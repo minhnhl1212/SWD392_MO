@@ -10,13 +10,14 @@ const styles = StyleSheet.create({
         fontSize: SIZES.xxLarge -13,
         marginTop: top,
         color: color,
-        marginHorizontal: 12
+        marginHorizontal: SIZES.small
     }),
     searchContainer: {
         margin: 15,
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "center",
         alignItems: "center",
+        marginHorizontal: SIZES.small,
         backgroundColor: COLORS.secondary,
         borderRadius: SIZES.medium,
         marginVertical: SIZES.medium,
