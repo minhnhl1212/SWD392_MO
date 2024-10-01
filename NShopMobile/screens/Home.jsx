@@ -4,6 +4,8 @@ import React from 'react'
 import styles from './home.style'
 import { Ionicons } from '@expo/vector-icons'
 import { Welcome } from '../components'
+import Carousel from '../components/home/Carousel'
+import Heading from '../components/home/Heading'
 
 const Home = () => {
   return (
@@ -25,6 +27,8 @@ const Home = () => {
         </View>
         <ScrollView>
             <Welcome />
+            <Carousel />
+            <Heading />
         </ScrollView>
     </SafeAreaView>
   )
