@@ -1,5 +1,4 @@
-import { TouchableOpacity, View, TextInput } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { TouchableOpacity, View, TextInput, SafeAreaView } from 'react-native'
 import React from 'react'
 import styles from './search.style'
 import { Feather, Ionicons } from '@expo/vector-icons'
