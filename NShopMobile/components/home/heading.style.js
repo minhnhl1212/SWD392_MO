@@ -3,7 +3,7 @@ import { COLORS, SIZES } from "../../constants/theme";
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: SIZES.medium,
+        marginTop: SIZES.small,
         marginHorizontal: 12
     },
     header: {

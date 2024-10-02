@@ -8,19 +8,19 @@ const styles = StyleSheet.create({
     welcomeText: (color, top) => ({
         fontFamily: "bold",
         fontSize: SIZES.xxLarge -13,
-        marginTop: top,
+        // marginTop: top,
         color: color,
         marginHorizontal: SIZES.small
     }),
     searchContainer: {
-        margin: 15,
+        // margin: 15,
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
         marginHorizontal: SIZES.small,
         backgroundColor: COLORS.secondary,
         borderRadius: SIZES.medium,
-        marginVertical: SIZES.medium,
+        marginVertical: SIZES.small,
         height: 50
     },
     searchIcon: {
