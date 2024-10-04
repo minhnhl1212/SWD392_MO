@@ -44,7 +44,8 @@ export default function App() {
         <Stack.Screen
           name="ProductDetails"
           component={ProductDetail}
-          options={{ title: 'Product Details' }}
+          // options={{ title: 'Product Details' }}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
