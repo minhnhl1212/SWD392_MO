@@ -31,22 +31,24 @@ module.exports = {
 
     searchProduct: async (req, res) => {
         try {
-            const products = await Product.aggregate(
-                [
-                    {
-                        $search: {
-                            index: "nshop",
-                            text: {
-                                query: req.params.key,
-                                path: {
-                                    wildcard: "*"
-                                }
-                            }
-                        }
-                    }
-                ]
-            )
-            res.status(200).json(products)
+            // search product by title
+            const result = await Product.find({title: {$regex: req.params.key, $options: 'i'}});
+            // const result = await Product.aggregate(
+            //     [
+            //         {
+            //             $search: {
+            //                 index: "nshop",
+            //                 text: {
+            //                     query: req.params.key,
+            //                     path: {
+            //                         wildcard: "*"
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     ]
+            // )
+            res.status(200).json(result)
         } catch (err) {
             res.status(500).json("Failed to get products")
         }

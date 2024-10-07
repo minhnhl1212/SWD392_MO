@@ -3,8 +3,11 @@ import React, {useState} from 'react'
 import styles from './productDetail.style'
 import { Fontisto, Ionicons, MaterialCommunityIcons, SimpleLineIcons } from '@expo/vector-icons'
 import { COLORS, SIZES } from '../constants/theme'
+import { useRoute } from '@react-navigation/native'
 
 const ProductDetail = ({ navigation }) => {
+  const route = useRoute();
+  const { item } = route.params;
   const [count, setCount] = useState(1);
   const increment = () => {
     if (count < 5)
@@ -26,14 +29,14 @@ const ProductDetail = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <Image
-        source={{ uri: "https://nshopvn.com/wp-content/uploads/2019/03/xbee-shield-8M9P-s4-600x600.jpg" }}
+        source={{ uri: item.imageUrl }}
         style={styles.image}
       />
       <View style={styles.detail}>
         <View style={styles.titleRow}>
-          <Text style={styles.title}>Product</Text>
+          <Text style={styles.title}>{item.title}</Text>
           <View style={styles.priceWrapper}>
-            <Text style={styles.price}>$60.88</Text>
+            <Text style={styles.price}>{item.price}</Text>
           </View>
         </View>
         <View style={styles.ratingRow}>
@@ -60,13 +63,13 @@ const ProductDetail = ({ navigation }) => {
         </View>
         <View style={styles.descriptionWrapper}>
           <Text style={styles.description}>Description</Text>
-          <Text style={styles.descriptionText}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem deserunt earum saepe tenetur ducimus odio, dolorum culpa, nisi dolores nesciunt totam iusto praesentium iure debitis! Ullam saepe nam itaque veritatis?</Text>
+          <Text style={styles.descriptionText}>{item.description}</Text>
         </View>
         <View style={{marginBottom: SIZES.small}}>
           <View style={styles.location}>
             <View style={{flexDirection: "row"}}>
               <Ionicons name="location-outline" size={20} color={COLORS.primary} />
-              <Text>   Hanoi, Vietnam   </Text>
+              <Text>   {item.product_location}   </Text>
             </View>
             <View style={{flexDirection: "row"}}>
               <MaterialCommunityIcons name="truck-delivery-outline" size={20} color={COLORS.primary} />
