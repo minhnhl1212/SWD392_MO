@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "909245696179",
+    "project_id": "asda-925f1",
+    "storage_bucket": "asda-925f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909245696179:android:ebb795f7cf20905f97c8c6",
+        "android_client_info": {
+          "package_name": "com.nshopmobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5VBHzBTE70tCoNH0ziG1NBxSihRA5YgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

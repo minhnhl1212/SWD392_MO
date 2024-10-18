@@ -6,12 +6,12 @@
     "orientation": "portrait",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-   
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      
+      "googleServicesFile": "./google-services.json",
+      "package": "com.nshopmobile"
     },
     "web": {
       "bundler": "metro",
@@ -19,10 +19,17 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      "@react-native-firebase/app",
+      "@react-native-firebase/messaging",
       "expo-router"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8b765e63-eeb9-4a5f-a0e5-88fac5699de7"
+      }
     }
   }
 }
