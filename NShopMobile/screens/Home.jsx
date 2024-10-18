@@ -14,7 +14,7 @@ const Home = () => {
             <View style={styles.appBar}>
                 <Ionicons name="" size={24} color="black" />
 
-                <Text style={styles.brand}>NShop</Text>
+                <Text style={styles.brand}>NShop </Text>
 
                 <View style={{ alignItems: "flex-end" }}>
                     <View style={styles.cartAlert}></View>

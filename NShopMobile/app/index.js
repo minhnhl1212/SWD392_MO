@@ -5,6 +5,8 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import { Cart, ProductDetail } from '../screens';
+import React, { useEffect } from 'react';
+import { firebaseMessaging } from '../components/auth/firebaseMessaging';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,15 +20,17 @@ export default function App() {
     semibold: require('../assets/fonts/Poppins-SemiBold.ttf'),
   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (fontsLoaded) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
+  
+  firebaseMessaging();
 
   return (
     <NavigationContainer independent={true}>

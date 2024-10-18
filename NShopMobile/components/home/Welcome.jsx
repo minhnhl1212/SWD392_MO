@@ -13,7 +13,7 @@ const Welcome = () => {
                 <Text style={styles.welcomeText(COLORS.black, SIZES.xSmall)}> Find Your </Text>
                 <Text style={styles.welcomeText(COLORS.primary, 0)}> Electronic Components</Text>
             </View>
-            <View style={styles.searchContainer}>
+            {/* <View style={styles.searchContainer}>
                 <View style={styles.searchWrapper}>
                     <TextInput
                         style={styles.searchInput}
@@ -25,7 +25,7 @@ const Welcome = () => {
                 <TouchableOpacity>
                     <Feather name="search" size={24} style={styles.searchIcon} />
                 </TouchableOpacity>
-            </View>
+            </View> */}
         </View>
     )
 }
