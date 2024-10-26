@@ -4,7 +4,7 @@ import BottomTabNavigation from '../navigation/BottomTabNavigation';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
-import { Cart, ProductDetail } from '../screens';
+import { Cart, ProductDetail, NewRivals } from '../screens';
 import React, { useEffect } from 'react';
 import { firebaseMessaging } from '../components/auth/firebaseMessaging';
 
@@ -48,6 +48,12 @@ export default function App() {
         <Stack.Screen
           name="ProductDetails"
           component={ProductDetail}
+          // options={{ title: 'Product Details' }}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ProductList"
+          component={NewRivals}
           // options={{ title: 'Product Details' }}
           options={{ headerShown: false }}
         />
