@@ -82,14 +82,14 @@ const Profile = ({navigation}) => {
             </View>
           ) : (
             <View style={styles.menuWrapper}>
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity onPress={() => navigation.navigate("Favorites")}>
                 <View style={styles.menuItem(0.2)}>
                   <MaterialCommunityIcons name="heart-outline" size={24} color={COLORS.primary} />
                   <Text style={styles.menuText}>Favorites</Text>
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity onPress={() => navigation.navigate("Orders")}>
                 <View style={styles.menuItem(0.2)}>
                   <MaterialCommunityIcons name="truck-delivery-outline" size={24} color={COLORS.primary} />
                   <Text style={styles.menuText}>Orders</Text>
