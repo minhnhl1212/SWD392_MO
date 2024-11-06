@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, TouchableOpacity, Image, TextInput } from 'react-native'
+import { ScrollView, Text, View, TouchableOpacity, Image, TextInput, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackBtn, Button } from '../components';
@@ -7,6 +7,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { COLORS } from '../constants/theme';
+import { useNavigation } from '@react-navigation/native';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Provide a valid email address').required('Required'),
@@ -16,9 +17,22 @@ const validationSchema = Yup.object().shape({
 })
 
 const LoginPage = () => {
+  const navigation = useNavigation();
   const [loader, setLoader] = useState(false);
   const [responseData, setResponseData] = useState(null);
   const [obsecureText, setObsecureText] = useState(false);
+
+  const inValidForm = () => {
+    Alert.alert(
+      "Invalid Form",
+      "Please provide all required fields",
+      [
+        // { text: "Cancel", onPress: () => {} },
+        { text: "Continue", onPress: () => {} },
+        // { defaultIndex: 1 }
+      ]
+    )
+  }
 
   return (
     <ScrollView>
@@ -102,12 +116,12 @@ const LoginPage = () => {
                   {touched.password && errors.password && <Text style={styles.errorMessage}>{errors.password}</Text>}
                 </View>
 
-                <Button title={"L O G I N"} onPress={() => {}}/>
+                <Button title={"L O G I N"} onPress={isValid ? handleSubmit : inValidForm } isValid={isValid}/>
               </View>
             )}
           </Formik>
 
-          
+          <Text style={styles.registration} onPress={() => navigation.navigate('SignUp')}>Register</Text>
         </View>
       </SafeAreaView>
     </ScrollView>
