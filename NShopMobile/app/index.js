@@ -4,7 +4,7 @@ import BottomTabNavigation from '../navigation/BottomTabNavigation';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
-import { Cart, ProductDetail, NewRivals, LoginPage, Orders, Favorites } from '../screens';
+import { Cart, ProductDetail, NewRivals, LoginPage, Orders, Favorites, SignUp } from '../screens';
 import React, { useEffect } from 'react';
 import { firebaseMessaging } from '../components/auth/firebaseMessaging';
 
@@ -69,6 +69,11 @@ export default function App() {
         <Stack.Screen
           name="Favorites"
           component={Favorites}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

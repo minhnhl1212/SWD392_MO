@@ -3,7 +3,7 @@ import { COLORS, SIZES } from '../constants/theme'
 
 const styles = StyleSheet.create({
     cover: {
-        height: SIZES.height/2.4,
+        height: SIZES.height/2.6,
         width: SIZES.width-60,
         resizeMode: 'contain',
         marginBottom: SIZES.xxLarge
@@ -44,6 +44,10 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginLeft: 5,
         fontSize: SIZES.xSmall
+    },
+    registration: {
+        marginTop: 20,
+        textAlign: 'center'
     },
 })
 

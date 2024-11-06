@@ -7,5 +7,6 @@ import NewRivals from "./NewRivals";
 import LoginPage from "./LoginPage";
 import Orders from "./Orders";
 import Favorites from "./Favorites";
+import SignUp from "./SignUp";
 
-export { Home, Search, Profile, Cart, ProductDetail, NewRivals, LoginPage, Orders, Favorites };
+export { Home, Search, Profile, Cart, ProductDetail, NewRivals, LoginPage, Orders, Favorites, SignUp };
