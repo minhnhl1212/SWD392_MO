@@ -58,7 +58,7 @@ const Profile = ({navigation}) => {
         </View>
         <View style={styles.profileContainer}>
           <Image
-            source={require('../assets/images/profile.jpeg')}
+            source={require('../assets/images/profile.png')}
             style={styles.profile}
           />
           <Text style={styles.name}> 

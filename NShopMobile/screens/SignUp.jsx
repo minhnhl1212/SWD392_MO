@@ -170,7 +170,7 @@ const SignUp = () => {
                                     {touched.password && errors.password && <Text style={styles.errorMessage}>{errors.password}</Text>}
                                 </View>
 
-                                <Button title={"S I G N U P"} onPress={isValid ? handleSubmit : inValidForm} isValid={isValid} />
+                                <Button title={"SIGN UP"} onPress={isValid ? handleSubmit : inValidForm} isValid={isValid} />
                             </View>
                         )}
                     </Formik>
