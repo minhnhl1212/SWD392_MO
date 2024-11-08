@@ -3,7 +3,7 @@ import { COLORS, SIZES } from '../constants/theme'
 
 const styles = StyleSheet.create({
     cover: {
-        height: SIZES.height/2.6,
+        height: SIZES.height/3,
         width: SIZES.width-60,
         resizeMode: 'contain',
         marginBottom: SIZES.xxLarge
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         marginBottom: SIZES.xxLarge
     },
     wrapper: {
-        marginBottom: 20,
+        marginBottom: 10,
     },
     label: {
         fontFamily: 'regular',
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         fontSize: SIZES.xSmall
     },
     registration: {
-        marginTop: 20,
+        fontSize: SIZES.medium,
         textAlign: 'center'
     },
 })

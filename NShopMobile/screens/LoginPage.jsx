@@ -7,7 +7,6 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { COLORS } from '../constants/theme';
-import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
@@ -21,9 +20,50 @@ const validationSchema = Yup.object().shape({
     .required('Required'),
 })
 
-const LoginPage = () => {
-  const navigation = useNavigation();
+const LoginPage = ({ navigation }) => {
+  const [loader, setLoader] = useState(false);
+  const [responseData, setResponseData] = useState(null);
   const [obsecureText, setObsecureText] = useState(false);
+
+  // this field is for login with api
+  const login = async (values) => {
+    setLoader(true);
+
+    try {
+      const data = values;
+      const response = await axios.post('http://10.0.2.2:3000/api/login', data);
+
+      if (response.status === 200) {
+        setLoader(false);
+        setResponseData(response.data);
+        await AsyncStorage.setItem(`user${responseData._id}`, JSON.stringify(responseData));
+        await AsyncStorage.setItem('id', JSON.stringify(responseData._id));
+        navigation.replace('Bottom Navigation');
+      } else {
+        Alert.alert(
+          "Error logging in",
+          "Please provide valid credentials",
+          [
+            // { text: "Cancel", onPress: () => {} },
+            { text: "Continue", onPress: () => { } },
+            // { defaultIndex: 1 }
+          ]
+        )
+      }
+    } catch (error) {
+      Alert.alert(
+        "Error ",
+        "Error logging in, please try again",
+        [
+          // { text: "Cancel", onPress: () => {} },
+          { text: "Continue", onPress: () => { } },
+          // { defaultIndex: 1 }
+        ]
+      )
+    } finally {
+      setLoader(false);
+    }
+  }
 
   // const [responseData, setResponseData] = useState(null);
   // const [isLogin, setIsLogin] = useState(true);
@@ -85,19 +125,21 @@ const LoginPage = () => {
     // redirectUri:
     //   AuthSession.makeRedirectUri({
     //         scheme: 'my-scheme',
-    //         path: 'index.js',
+    //         path: 'redirect',
     //       }),
+    responseType: 'code',
     ...{useProxy: false}
   };
 
   const [request, response, promptAsync] = Google.useAuthRequest(config);
-
+  
   WebBrowser.maybeCompleteAuthSession();
   
   useEffect(() => {
+    console.log("response: ", response);
     if (response?.type === 'success') {
-      setAccessToken(response.authentication.accessToken);
-      console.log("access token: ", response.authentication.accessToken);
+      setAccessToken(response.params.access_Token);
+      console.log("access token: ", response.authentication.accessToken, response.params.access_Token);
     }
   }, [response]);
 
@@ -113,7 +155,7 @@ const LoginPage = () => {
 
   getUserData();
 
-  console.log("user info: ", userInfo);
+  // console.log("user info: ", userInfo);
   
 
 
@@ -200,9 +242,7 @@ const LoginPage = () => {
           <Formik
             initialValues={{ email: '', password: '' }}
             validationSchema={validationSchema}
-            onSubmit={(values) => {
-              console.log(values);
-            }}
+            onSubmit={(values) => login(values)}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors, isValid, setFieldTouched, touched }) => (
               <View>
@@ -266,14 +306,14 @@ const LoginPage = () => {
                   {touched.password && errors.password && <Text style={styles.errorMessage}>{errors.password}</Text>}
                 </View>
 
-                <Button title={"LOGIN"} onPress={isValid ? handleSubmit : inValidForm } isValid={isValid}/>
+                <Button loader={loader} title={"LOGIN"} onPress={isValid ? handleSubmit : inValidForm } isValid={isValid}/>
               </View>
             )}
           </Formik>
 
           {/* <Button title={"LOGIN WITH GOOGLE"} onPress={() => handleLoginGoogle()} isValid={true} /> */}
 
-          <Button title={"LOGIN WITH GOOGLE"} onPress={() => promptAsync({useProxy: true})} isValid={true} />
+          <Button loader={false} title={"LOGIN WITH GOOGLE"} onPress={() => promptAsync()} isValid={true} />
           
           <Text style={styles.registration} onPress={() => navigation.navigate('SignUp')}>Register</Text>
         </View>
