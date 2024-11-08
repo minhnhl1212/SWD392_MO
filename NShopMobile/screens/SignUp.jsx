@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { COLORS, SIZES } from '../constants/theme';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().email('Provide a valid email address').required('Required'),
@@ -22,6 +23,24 @@ const SignUp = () => {
     const navigation = useNavigation();
     const [loader, setLoader] = useState(false);
     const [obsecureText, setObsecureText] = useState(false);
+
+    const registerUser = async (values) => {
+        setLoader(true);
+
+        try {
+            const data = values;
+            const response = await axios.post('http://10.0.2.2:3000/api/register', data);
+
+            if(response.status === 201) {
+                navigation.replace('Login');
+            }
+        }
+        catch (error) {
+            console.log('Error registering user: ', error);
+        } finally {
+            setLoader(false);
+        }
+    }
 
     const inValidForm = () => {
         Alert.alert(
@@ -55,7 +74,7 @@ const SignUp = () => {
                         initialValues={{ email: '', password: '', location: '', username: '' }}
                         validationSchema={validationSchema}
                         onSubmit={(values) => {
-                            console.log(values);
+                            registerUser(values);
                         }}
                     >
                         {({ handleChange, handleBlur, handleSubmit, values, errors, isValid, setFieldTouched, touched }) => (
@@ -170,7 +189,7 @@ const SignUp = () => {
                                     {touched.password && errors.password && <Text style={styles.errorMessage}>{errors.password}</Text>}
                                 </View>
 
-                                <Button title={"S I G N U P"} onPress={isValid ? handleSubmit : inValidForm} isValid={isValid} />
+                                <Button loader={loader} title={"SIGN UP"} onPress={isValid ? handleSubmit : inValidForm} isValid={isValid} />
                             </View>
                         )}
                     </Formik>

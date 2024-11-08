@@ -10,14 +10,14 @@ export function firebaseMessaging() {
             authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
         if (enabled) {
-            console.log('Authorization status:', authStatus);
+            console.log('Authorization Messaging status:', authStatus);
         }
     }
 
     useEffect(() => {
         if (requestUserPermission()) {
             messaging().getToken().then((token) => {
-                console.log(token);
+                console.log("Messaging token:", token);
             });
         } else {
             console.log("Permission not granted", authStatus);

@@ -4,7 +4,7 @@
     "slug": "NShopMobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "myapp",
+    "scheme": "my-scheme",
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true
