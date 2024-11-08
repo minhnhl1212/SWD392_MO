@@ -12,10 +12,6 @@ const Search = () => {
 
   const handlePress = async() => {
     try {
-      // fetch data from API
-      // const response = await fetch(`https://api.example.com/products?search=${searchKey}`);
-      // const data = await response.json();
-      // setSearchResults(data);
       const response = await axios.get(`http://10.0.2.2:3000/api/products/search/${searchKey}`);
       console.log("-----------------------------");
       console.log(response.data);

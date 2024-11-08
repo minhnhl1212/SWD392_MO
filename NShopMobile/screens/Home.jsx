@@ -7,8 +7,10 @@ import Carousel from '../components/home/Carousel'
 import Heading from '../components/home/Heading'
 import ProductRow from '../components/products/ProductRow'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useNavigation } from '@react-navigation/native'
 
 const Home = () => {
+    const navigation = useNavigation();
     const [userData, setUserData] = useState(null);
     const [userLogin, setUserLogin] = useState(false);
     useEffect(() => {
@@ -43,7 +45,7 @@ const Home = () => {
                     <View style={{ alignItems: "flex-end" }}>
                         <View style={styles.cartAlert}></View>
 
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
                             <Ionicons name="cart-outline" size={24} />
                         </TouchableOpacity>
                     </View>
@@ -52,8 +54,11 @@ const Home = () => {
             <ScrollView>
                 <Welcome />
                 <Carousel />
-                <Heading />
-                <ProductRow />
+                <Heading title="New Rivals    " />
+                <ProductRow min='0' max='2' />
+                <Heading title="Featured Product    "/>
+                <ProductRow min='3' max='6' />
+                <View style={{ height: 150 }}></View>
             </ScrollView>
         </SafeAreaView>
     )
