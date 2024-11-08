@@ -5,12 +5,12 @@ import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '../../constants/theme'
 import { useNavigation } from '@react-navigation/native'
 
-const Heading = () => {
+const Heading = ({title}) => {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>Featured Products</Text>
+                <Text style={styles.headerTitle}>{title} </Text>
                 <TouchableOpacity onPress={() => navigation.navigate("ProductList")}>
                     <Ionicons name="grid" size={24} color={COLORS.primary} />
                 </TouchableOpacity>

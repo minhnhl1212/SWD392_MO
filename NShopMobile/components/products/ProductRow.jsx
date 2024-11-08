@@ -5,9 +5,9 @@ import ProductCartView from './ProductCartView';
 import styles from './productRow.style';
 import useFetch from '../../hooks/useFetch';
 
-const ProductRow = () => {
+const ProductRow = ({min, max}) => {
     const { data, isLoading, error } = useFetch();
-    console.log(data);
+    // console.log(data);
     // const products = [1, 2, 3, 4];
     return (
         <View style={styles.container}>
@@ -17,9 +17,12 @@ const ProductRow = () => {
                 <FlatList
                     data={data}
                     keyExtractor={item => item._id}
-                    renderItem={({ item }) => (
-                        <ProductCartView item={item} />
-                    )}
+                    renderItem={({ item, index }) => {
+                        if (index >= min && index <= max ) { // Skip the first item by checking the index
+                            return <ProductCartView item={item} />;
+                        }
+                        return null; // Don't render anything for the first item
+                    }}
                     horizontal
                     contentContainerStyle={{ columnGap: SIZES.xSmall}}
                 />

@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 const Profile = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
@@ -27,6 +28,7 @@ const Profile = ({ navigation }) => {
         setUserData(parsedData);
         setUserLogin(true);
       } else {
+        setUserLogin(false);
         navigation.navigate('Login');
       }
     } catch (error) {
@@ -40,7 +42,7 @@ const Profile = ({ navigation }) => {
 
     try {
       await AsyncStorage.multiRemove([userId, 'id']);
-      navigation.navigate('Profile');
+      checkExistingUser();
     } catch (error) {
       console.log('Error loggin out the user: ', error);
     }
@@ -61,7 +63,7 @@ const Profile = ({ navigation }) => {
   const clearCache = () => {
     Alert.alert(
       "Clear Cache",
-      "Are you sure you want to delete all data on your device?",
+      "Are you sure you want to clear all data on your device?",
       [
         { text: "Cancel", onPress: () => console.log("Cancel Pressed") },
         { text: "Continue", onPress: () => console.log("Clear Cache Pressed") },
@@ -70,13 +72,31 @@ const Profile = ({ navigation }) => {
     )
   }
 
+  const userDeleteAccount = async () => {
+    try {
+      const id = await AsyncStorage.getItem('id');
+      const data = `${JSON.parse(id)}`;
+      const response = await axios.delete(`http://10.0.2.2:3000/api/users/${data}`);
+
+      if (response.status === 200) {
+        await AsyncStorage.multiRemove([`user${JSON.parse(id)}`, 'id']);
+        checkExistingUser();
+        console.log(response);
+      } else {
+        console.log('Error deleting user account: ', response);
+      }
+    } catch (error) {
+      console.log('Error deleting the user: ', error);
+    }
+  }
+
   const deleteAccount = () => {
     Alert.alert(
       "Delete Account",
       "Are you sure you want to delete your account?",
       [
         { text: "Cancel", onPress: () => console.log("Cancel Pressed") },
-        { text: "Continue", onPress: () => console.log("Delete Account Pressed") },
+        { text: "Continue", onPress: () => userDeleteAccount() },
         // { defaultIndex: 1 }
       ]
     )
@@ -132,7 +152,7 @@ const Profile = ({ navigation }) => {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
                 <View style={styles.menuItem(0.2)}>
                   <SimpleLineIcons name="bag" size={24} color={COLORS.primary} />
                   <Text style={styles.menuText}>Cart</Text>

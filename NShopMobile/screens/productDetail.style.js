@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
         top: 20
     },
     title: {
+        width: SIZES.width - 120,
         fontFamily: "bold",
         fontSize: SIZES.large
     },

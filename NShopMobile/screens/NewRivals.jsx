@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '../constants/theme'
 import { ProductList } from '../components'
 
-const NewRivals = ({navigation}) => {
+const NewRivals = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>

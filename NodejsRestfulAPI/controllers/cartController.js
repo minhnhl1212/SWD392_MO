@@ -57,7 +57,7 @@ module.exports = {
             );
 
             if (!updatedCart) {
-                res.status(404).json("Cart item not found");
+                return res.status(404).json("Cart item not found");
             }
 
             res.status(200).json(updatedCart);
